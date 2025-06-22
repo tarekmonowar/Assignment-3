@@ -23,7 +23,7 @@ app.use("/", borrowRouter);
 // Home route
 app.get("/", (req, res) => {
   res.send(
-    "Hello, PH Instructor you are in right place ❤️ !!! API Working with /api",
+    "Hello, PH Instructor you are in right place ❤️ !!! API Working with https://assignment-3-three-lilac.vercel.app",
   );
 });
 
