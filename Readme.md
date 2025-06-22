@@ -9,7 +9,7 @@ as borrowing books with availability management and borrowing summaries.
 
 ## Live Backend Link
 
-http://localhost:3000
+https://assignment-3-three-lilac.vercel.app
 
 ---
 
@@ -59,6 +59,6 @@ http://localhost:3000
 1. Clone the repository:
 
    ```bash
-   git clone <repo-url>
-   cd <repo-folder>
+   git clone https://github.com/tarekmonowar/Assignment-3.git
+
    ```
