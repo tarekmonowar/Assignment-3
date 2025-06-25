@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import ErrorHandler from "../utils/ErrorHandler.js";
 import { Book } from "../models/book.model.js";
 import mongoose from "mongoose";
+import connectDB from "../utils/db.js";
 
 //type definition for base query
 
@@ -16,6 +17,7 @@ export const createBook = async (
   next: NextFunction,
 ) => {
   try {
+    await connectDB(); // hi PH Instructor without this it cannot works in vercel see buffering timed out that's why i call here
     const bookData = req.body;
     const newBook = await Book.create(bookData);
     res.status(201).json({
@@ -41,6 +43,8 @@ export const getAllBooks = async (
   next: NextFunction,
 ) => {
   try {
+    await connectDB(); // hi PH Instructor without this it cannot works in vercel see buffering timed out that's why i call here
+
     const { filter, sortBy, sort = "asc", limit = 10 } = req.query;
 
     const basequery: BaseQuery = {};
@@ -77,6 +81,8 @@ export const getBookById = async (
   next: NextFunction,
 ) => {
   try {
+    await connectDB(); // hi PH Instructor without this it cannot works in vercel see buffering timed out that's why i call here
+
     const bookId = req.params.bookId;
     const book = await Book.findById(bookId);
     if (!book) {
@@ -104,6 +110,7 @@ export const updateBookById = async (
   next: NextFunction,
 ) => {
   try {
+    await connectDB(); // hi PH Instructor without this it cannot works in vercel see buffering timed out that's why i call here
     const bookId = req.params.bookId;
     const bookData = req.body;
 
@@ -144,6 +151,8 @@ export const deleteBookById = async (
   next: NextFunction,
 ) => {
   try {
+    await connectDB(); // hi PH Instructor without this it cannot works in vercel see buffering timed out that's why i call here
+
     const bookId = req.params.bookId;
     const deletedBook = await Book.findByIdAndDelete(bookId);
 

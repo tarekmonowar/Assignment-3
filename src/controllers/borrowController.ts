@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import ErrorHandler from "../utils/ErrorHandler.js";
 import { Borrow } from "../models/borrow.model.js";
 import mongoose from "mongoose";
+import connectDB from "../utils/db.js";
 import { Book } from "../models/book.model.js";
 import { BOOK } from "../models/book.model.js";
 
@@ -13,6 +14,8 @@ export const createBorrow = async (
   next: NextFunction,
 ) => {
   try {
+    await connectDB(); // hi PH Instructor without this it cannot works in vercel see buffering timed out that's why i call here
+
     if (!req.body) {
       return next(new ErrorHandler("Missing request body", 400));
     }
@@ -69,6 +72,8 @@ export const getBorrowedBooksSummary = async (
   next: NextFunction,
 ) => {
   try {
+    await connectDB(); // hi PH Instructor without this it cannot works in vercel see buffering timed out that's why i call here
+
     const summary = await Borrow.aggregate([
       {
         $group: {
